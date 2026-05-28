@@ -1,0 +1,110 @@
+{
+  // ============================================================
+  // .vscode/settings.json — Copilot Governance Starter Kit
+  //
+  // Workspace-level VS Code settings that reduce Copilot token
+  // usage by disabling suggestions on file types where Copilot
+  // adds no value.
+  //
+  // HOW TO USE:
+  //   Copy this to your project's .vscode/ folder.
+  //   Teams can override in their own user settings if needed.
+  // ============================================================
+
+  // --- Copilot: Enable/Disable per language ---
+  // Set false for generated, config, or lock files where
+  // Copilot completions are irrelevant or noise.
+  "github.copilot.enable": {
+    "*": true,
+
+    // Config files — usually hand-crafted, not generated
+    "json": false,
+    "jsonc": false,
+    "yaml": false,
+    "toml": false,
+    "ini": false,
+    "properties": false,
+    "dotenv": false,
+
+    // Lock files — never edit manually
+    "lock": false,
+
+    // Infrastructure — suggest disabling if your team
+    // doesn't actively use Copilot for IaC
+    "terraform": false,
+    "dockerfile": false,
+
+    // Markup / docs — enable only if your team writes
+    // a lot of documentation in the IDE
+    "markdown": false,
+    "html": true,
+
+    // Data files — large context, no useful completions
+    "csv": false,
+    "tsv": false,
+    "sql": true
+  },
+
+  // --- Copilot Chat: Workspace indexing ---
+  // Limit which folders Copilot Chat indexes for @workspace queries.
+  // Reduces the context window Copilot searches across.
+  "github.copilot.chat.search.semanticTextResults": true,
+
+  // --- Editor: Reduce open-tab context noise ---
+  // Copilot reads your open tabs as context.
+  // These settings encourage cleaner tab hygiene.
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 8,
+  "workbench.editor.limit.perEditorGroup": true,
+
+  // Auto-close tabs you've visited but aren't actively using
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+
+  // --- File associations: Prevent misidentification ---
+  // Ensures Copilot uses the right language model
+  // for file types that might be ambiguous.
+  "files.associations": {
+    "*.env.*": "dotenv",
+    "*.config.js": "javascript",
+    "*.config.ts": "typescript",
+    "Dockerfile*": "dockerfile",
+    "*.yaml": "yaml",
+    "*.yml": "yaml"
+  },
+
+  // --- Search: Exclude noise from Copilot @workspace ---
+  // These exclusions also reduce what Copilot sees in workspace searches.
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/out": true,
+    "**/.next": true,
+    "**/__pycache__": true,
+    "**/coverage": true,
+    "**/*.min.js": true,
+    "**/*.map": true,
+    "**/yarn.lock": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true
+  },
+
+  // --- Files: Exclude from file watcher (reduces IDE overhead too) ---
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.git/**": true,
+    "**/coverage/**": true
+  },
+
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  }
+}
